@@ -1,0 +1,13 @@
+services:
+  wstunnel-server:
+    build:
+      context: /docker/wstunnel
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    user: "1001:1001"
+    volumes:
+      - "/home/wstunnel/docker/app:/home/app"
+    ports:
+      - "12099:12099/udp"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
